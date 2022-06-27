@@ -242,6 +242,10 @@
                   You’ll also receive our free health & wellness tips e-newsletter, read daily by millions of folks at
                   no
                   cost. Your information is 100% secure and will never be shared with anyone.</div>
+                <div class="ne elHeadline lh3 elMargin0 elBGStyle0 hsTextShadow0 should-show d-none"
+                  style="text-align: center; color: rgb(255, 255, 255); margin-top: 30px; font-size: 24px;">
+                  <b>Thanks we received your email.</b>
+                </div>
               </div>
             </div>
           </div>
@@ -402,8 +406,10 @@
 
       if (!!isSubmitted === true) {
         $('.should-hide').addClass('d-none');
+        $('.should-show').removeClass('d-none');
       } else {
         $('.should-hide').removeClass('d-none');
+        $('.should-show').addClass('d-none');
       }
     }
 
