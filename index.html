@@ -388,20 +388,26 @@
         .then(response => {
           console.log('Success!', response);
           localStorage["form"] = 'isSubmitted';
+          checkForm()
         })
         .catch(error => {
           console.error('Error!', error.message);
           localStorage["form"] = '';
+          checkForm()
         })
     })
 
-    isSubmitted = localStorage.getItem('form');
+    function checkForm() {
+      isSubmitted = localStorage.getItem('form');
 
-    if (!!isSubmitted === true) {
-      $('.should-hide').addClass('d-none');
-    } else {
-      $('.should-hide').removeClass('d-none');
+      if (!!isSubmitted === true) {
+        $('.should-hide').addClass('d-none');
+      } else {
+        $('.should-hide').removeClass('d-none');
+      }
     }
+
+    checkForm()
   </script>
 
 
