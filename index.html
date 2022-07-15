@@ -394,7 +394,8 @@
             'accept': 'application/json',
             'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey,
             'Content-Type': 'application/json'
-          }
+          },
+          referrerPolicy: 'no-referrer'
         })
         .then(response => {
           console.log('Success!', response);
