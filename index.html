@@ -388,10 +388,11 @@
       e.preventDefault()
       fetch(blastableApiUrl, {
           method: 'POST',
-          body: new FormData(form),
+          body: JSON.stringify({email:document.getElementById('email').value}),
           headers: {
             'accept': 'application/json',
-            'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey
+            'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey,
+            'Content-Type': 'application/json'
           }
         })
         .then(response => {
