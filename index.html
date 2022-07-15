@@ -391,7 +391,9 @@
           body: new FormData(form),
           mode: 'cors',
           headers: {
-            'x-blastable-public-key': blastablePublicKey
+            'accept': 'application/json',
+            'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey,
+            'Host': 'blastable.com'
 
           }
         })
