@@ -390,6 +390,7 @@
           method: 'POST',
           body: new FormData(form),
           mode: 'cors',
+        credentials:"include",
           headers: {
             'accept': 'application/json',
             'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey,
