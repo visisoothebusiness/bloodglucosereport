@@ -390,10 +390,10 @@
           method: 'POST',
           body: new FormData(form),
           mode: 'cors',
-          referrerPolicy: 'no-referrer',
           headers: {
-            'accept': 'application/json',
-            'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey,
+            'accept': 'application/json; charset=UTF-8',
+            'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey
+
           }
         })
         .then(response => {
