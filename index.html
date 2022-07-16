@@ -386,13 +386,18 @@
 
     form.addEventListener('submit', e => {
       e.preventDefault()
+      let postHeaders = new Headers();
+      postHeaders.append('X-BLASTABLE-PUBLIC-KEY', blastablePublicKey);
+      postHeaders.append('Host', 'blastable.com');
+      postHeaders.append('Access-Control-Allow-Origin', '*');
+      postHeaders.append('Content-Type', 'application/json');
+      postHeaders.append('accept', 'application/json');
+      postHeaders.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
       fetch(blastableApiUrl, {
           method: 'POST',
-          body: new FormData(form),
+          body: JSON.stringify({email:document.getElementById('email')}),
           mode: 'cors',
-          headers: {
-            'x-blastable-public-key': blastablePublicKey
-          }
+          headers: postHeaders
         })
         .then(response => {
           console.log('Success!', response);
