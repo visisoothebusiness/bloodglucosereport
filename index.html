@@ -148,7 +148,7 @@
       id="section-2872310000-111" data-title="optin area - Clone" data-block-color="0074C7"
       style="padding-top: 40px; padding-bottom: 40px; margin-top: 40px; border-color: rgb(39, 82, 123); outline: none; background-color: rgba(0, 0, 0, 0.75); opacity: 1; position: relative; transform: scaleX(1) scaleY(1);"
       data-trigger="ran" data-animate="scale" data-delay="500" data-hide-on="">
-      <form name="submit-to-google-sheet">
+      <form name="submit-to-blastable-api">
         <div class="containerInner ui-sortable" style="padding-left: 40px; padding-right: 40px;">
           <div
             class="row bgCover noBorder borderSolid border3px cornersAll radius0 shadow0 P0-top P0-bottom P0H noTopMargin"
@@ -378,16 +378,24 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
   <script>
-    const scriptURL =
-      'https://script.google.com/macros/s/AKfycbx3dbbH_QObAbbltn6S65Weu2JspZsxRNdSU17wlNQKtw4iM0aKhE6NUBsyTrws1qEt/exec';
-    const form = document.forms['submit-to-google-sheet'];
+    const blastableListUid = 'rp960ern9s434';
+    const blastableApiUrl = 'https://blastable.com/api/lists/'+blastableListUid+ '/subscribers';
+    const blastablePublicKey = '00c528ba33e2488ee82df989b9cb47e8070a3650';
+    const form = document.forms['submit-to-blastable-api'];
     let isSubmitted = false;
 
     form.addEventListener('submit', e => {
       e.preventDefault()
-      fetch(scriptURL, {
+      fetch(blastableApiUrl, {
           method: 'POST',
-          body: new FormData(form)
+          body: new FormData(form),
+          mode: 'cors',
+          headers: {
+            'X-BLASTABLE-PUBLIC-KEY': blastablePublicKey,
+            'Host': 'blastable.com',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+          }
         })
         .then(response => {
           console.log('Success!', response);
