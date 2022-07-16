@@ -391,8 +391,7 @@
           body: new FormData(form),
           mode: 'cors',
           headers: {
-            'x-blastable-public-key': blastablePublicKey,
-            "Access-Control-Allow-Headers": "x-blastable-public-key, Access-Control-Allow-Headers, Access-Control-Request-Headers"
+            'x-blastable-public-key': blastablePublicKey
           }
         })
         .then(response => {
