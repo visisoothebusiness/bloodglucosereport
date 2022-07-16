@@ -387,7 +387,7 @@
     form.addEventListener('submit', e => {
       e.preventDefault()
       let postHeaders = new Headers();
-      postHeaders.append('X-BLASTABLE-PUBLIC-KEY', blastablePublicKey);
+      //postHeaders.append('X-BLASTABLE-PUBLIC-KEY', blastablePublicKey);
       postHeaders.append('Host', 'blastable.com');
       postHeaders.append('Access-Control-Allow-Origin', '*');
       postHeaders.append('Content-Type', 'application/json');
