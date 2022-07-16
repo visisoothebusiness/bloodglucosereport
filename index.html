@@ -388,8 +388,6 @@
       e.preventDefault()
       let postHeaders = new Headers();
       postHeaders.append('X-BLASTABLE-PUBLIC-KEY', blastablePublicKey);
-      postHeaders.append('Host', 'blastable.com');
-      postHeaders.append('Access-Control-Allow-Origin', '*');
       postHeaders.append('accept', 'application/json');
       postHeaders.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
      fetch(blastableApiUrl, {
