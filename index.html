@@ -390,25 +390,23 @@
       postHeaders.append('X-BLASTABLE-PUBLIC-KEY', blastablePublicKey);
       postHeaders.append('Host', 'blastable.com');
       postHeaders.append('Access-Control-Allow-Origin', '*');
-      postHeaders.append('Content-Type', 'application/json');
       postHeaders.append('accept', 'application/json');
-      postHeaders.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
-      var settings = {
-          'cache': false,
-          'dataType': "json",
-          "async": true,
-          "crossDomain": true,
-          "url": blastableApiUrl,
-          "method": "POST",
-          "headers": {
-              "Content-Type": "application/json",
-              'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY'
-          }
-      }
-
-      $.ajax(settings).done(function (response) {
-          console.log(response);
-      });
+      postHeaders.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
+     fetch(scriptURL, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: postHeaders
+        })
+        .then(response => {
+          console.log('Success!', response);
+          localStorage["form"] = 'isSubmitted';
+          checkForm()
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          localStorage["form"] = '';
+          checkForm()
+        })
     })
 
     function checkForm() {
