@@ -392,9 +392,7 @@
           mode: 'cors',
           headers: {
             'x-blastable-public-key': blastablePublicKey,
-            'Host': 'blastable.com',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "x-blastable-public-key, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+            "Access-Control-Allow-Headers": "x-blastable-public-key, Access-Control-Allow-Headers, Access-Control-Request-Headers"
           }
         })
         .then(response => {
