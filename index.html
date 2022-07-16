@@ -392,9 +392,10 @@
       postHeaders.append('Access-Control-Allow-Origin', '*');
       postHeaders.append('accept', 'application/json');
       postHeaders.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
-     fetch(scriptURL, {
+     fetch(blastableApiUrl, {
           method: 'POST',
           body: new FormData(form),
+          mode: 'cors',
           headers: postHeaders
         })
         .then(response => {
