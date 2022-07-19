@@ -148,7 +148,7 @@
       id="section-2872310000-111" data-title="optin area - Clone" data-block-color="0074C7"
       style="padding-top: 40px; padding-bottom: 40px; margin-top: 40px; border-color: rgb(39, 82, 123); outline: none; background-color: rgba(0, 0, 0, 0.75); opacity: 1; position: relative; transform: scaleX(1) scaleY(1);"
       data-trigger="ran" data-animate="scale" data-delay="500" data-hide-on="">
-      <form name="submit-to-google-sheet">
+      <form name="submit-to-blastable-api">
         <div class="containerInner ui-sortable" style="padding-left: 40px; padding-right: 40px;">
           <div
             class="row bgCover noBorder borderSolid border3px cornersAll radius0 shadow0 P0-top P0-bottom P0H noTopMargin"
@@ -191,22 +191,7 @@
                   data-de-type="customjs" data-de-editing="false" data-title="Custom JS / HTML" data-ce="false"
                   data-trigger="none" data-animate="fade" data-delay="500"
                   style="margin-top: 30px; outline: none; cursor: pointer;" aria-disabled="false">
-
-                  <style>
-                    input[type=email] {
-                      border: 1px solid #ff8e29 !important;
-                      box-shadow: unset !important;
-                      border-radius: 10px !important;
-                      width: 100%;
-                      max-width: 350px;
-                      font-size: 16px;
-                      padding: 12px 18px;
-                      margin: 0 auto;
-                      display: block;
-                    }
-                  </style>
-                  <input type="email" id="email" name="email" placeholder="Email" value="" class="garlic-auto-save"
-                    required>
+                  <iframe src="https://blastable.com/lists/signup/206?output=embed&width=400&height=400" width="400" height="400" frameborder="0" scrolling="no">/iframe>
                 </div>
               </div>
               <div class="de elBTN elAlign_center elMargin0 ui-droppable de-editable should-hide"
@@ -378,16 +363,26 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
   <script>
-    const scriptURL =
-      'https://script.google.com/macros/s/AKfycbx3dbbH_QObAbbltn6S65Weu2JspZsxRNdSU17wlNQKtw4iM0aKhE6NUBsyTrws1qEt/exec';
-    const form = document.forms['submit-to-google-sheet'];
+    const blastableListUid = 'rp960ern9s434';
+    const blastableApiUrl = 'https://blastable.com/api/lists/'+blastableListUid+ '/subscribers';
+    const blastablePublicKey = '00c528ba33e2488ee82df989b9cb47e8070a3650';
+    const form = document.forms['submit-to-blastable-api'];
     let isSubmitted = false;
 
     form.addEventListener('submit', e => {
       e.preventDefault()
-      fetch(scriptURL, {
+      let postHeaders = new Headers();
+      postHeaders.append('X-BLASTABLE-PUBLIC-KEY', blastablePublicKey);
+      postHeaders.append('Host', 'blastable.com');
+      postHeaders.append('Access-Control-Allow-Origin', '*');
+      postHeaders.append('Content-Type', 'application/json');
+      postHeaders.append('accept', 'application/json');
+      postHeaders.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
+      fetch(blastableApiUrl, {
           method: 'POST',
-          body: new FormData(form)
+          body: JSON.stringify({email:document.getElementById('email')}),
+          mode: 'cors',
+          headers: postHeaders
         })
         .then(response => {
           console.log('Success!', response);
@@ -414,6 +409,12 @@
     }
 
     checkForm()
+
+    let iframe = $('iframe').first();
+    iframe.css({
+        'height':'200px !important'
+    });
+    console.log(iframe);
   </script>
 
 
