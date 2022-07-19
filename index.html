@@ -392,7 +392,7 @@
       postHeaders.append('Access-Control-Allow-Origin', '*');
       postHeaders.append('Content-Type', 'application/json');
       postHeaders.append('accept', 'application/json');
-      postHeaders.append('Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
+      postHeaders.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-BLASTABLE-PUBLIC-KEY');
       fetch(blastableApiUrl, {
           method: 'POST',
           body: JSON.stringify({email:document.getElementById('email')}),
